@@ -25,7 +25,11 @@ public class CompanyService {
     }
 
     public List<CompanyDto> get(){
-        return repository.get().stream().map(Company::toDto).collect(Collectors.toList());
+        return repository
+                .get()
+                .stream()
+                .map(Company::toDto)
+                .collect(Collectors.toList());
     }
 
     public boolean create(CompanyDto company) {
