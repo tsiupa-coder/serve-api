@@ -1,0 +1,5 @@
+prepare postgresql
+    1) sudo -u postgres psql;
+    2) create database serveApi;
+    3) create user apiuser with encrypted password 'apiuser';
+    4) grant all privileges on database serveApi to apiuser;
