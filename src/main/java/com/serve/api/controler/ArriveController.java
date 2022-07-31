@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ArriveController {
 
-    ArriveService service;
-
-    @PostMapping
-    public boolean arrive(@RequestBody ArriveDto arriveDto) {
-        return service.arrive(arriveDto);
-    }
+//    ArriveService service;
+//
+//    @PostMapping
+//    public boolean arrive(@RequestBody ArriveDto arriveDto) {
+//        return service.arrive(arriveDto);
+//    }
 }

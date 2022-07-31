@@ -21,19 +21,15 @@ public class CompanyService {
 
     public CompanyDto get(String id) {
 
-        return repository.get(id).orElseThrow().toDto();
+        return null;
     }
 
     public List<CompanyDto> get(){
-        return repository
-                .get()
-                .stream()
-                .map(Company::toDto)
-                .collect(Collectors.toList());
+        return null;
     }
 
     public boolean create(CompanyDto company) {
 
-        return repository.create(Company.getCompany(company));
+        return false;
     }
 }

@@ -15,5 +15,4 @@ public class UserDto {
     String first_name;
     String second_name;
     String position;
-    String companyname;
 }

@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ArriveService {
 
-    ArriveRepository repository;
-
-    public boolean arrive(ArriveDto arriveDto) {
-
-        return repository.arrive(Arrive.getArrive(arriveDto));
-
-    }
+//    ArriveRepository repository;
+//
+//    public boolean arrive(ArriveDto arriveDto) {
+//
+//        return repository.arrive(Arrive.getArrive(arriveDto));
+//
+//    }
 }

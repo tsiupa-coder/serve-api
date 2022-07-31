@@ -18,19 +18,19 @@ public class UserService {
 
     UserRepository repository;
 
-    public UserDto get(String id) {
+    public UserDto get(Long id) {
 
-        return repository.get(id).orElseThrow().getDto();
+        return null;
     }
 
     public boolean create(UserDto user) {
 
 
-        return repository.create(User.getUser(user));
+        return false;
     }
 
     public List<UserDto> getAll(){
 
-        return repository.getAll().stream().map(User::getDto).collect(Collectors.toList());
+        return null;
     }
 }

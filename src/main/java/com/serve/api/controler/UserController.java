@@ -3,6 +3,7 @@ package com.serve.api.controler;
 import com.serve.api.dto.UserDto;
 import com.serve.api.model.User;
 import com.serve.api.service.UserService;
+import liquibase.pro.packaged.L;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -24,7 +25,7 @@ public class UserController {
     UserService service;
 
     @GetMapping("{id}")
-    public UserDto getUser(@PathVariable String id) {
+    public UserDto getUser(@PathVariable Long id) {
 
 
         return service.get(id);
