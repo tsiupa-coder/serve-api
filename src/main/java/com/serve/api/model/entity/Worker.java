@@ -19,4 +19,6 @@ public class Worker extends BaseEntity {
     String second_name;
     @Column(name = "position")
     String position;
+    @Column(name = "isActive")
+    boolean isActive;
 }
