@@ -16,15 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.serve.api.controler.Endpoints.ID;
+import static com.serve.api.controler.Endpoints.USER;
+
 @RestController
 @AllArgsConstructor
-@RequestMapping("/user")
+@RequestMapping(USER)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserController {
 
     UserService service;
 
-    @GetMapping("{id}")
+    @GetMapping(ID)
     public UserDto getUser(@PathVariable Long id) {
 
         return service.get(id);

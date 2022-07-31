@@ -16,15 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.serve.api.controler.Endpoints.ARRIVE;
+import static com.serve.api.controler.Endpoints.ID;
+
 @RestController
 @AllArgsConstructor
-@RequestMapping("/arrive")
+@RequestMapping(ARRIVE)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ArriveController{
 
     ArriveService service;
 
-    @GetMapping("{id}")
+    @GetMapping(ID)
     public ArriveDto get(@PathVariable Long id) {
         return service.get(id);
     }

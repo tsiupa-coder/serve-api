@@ -18,15 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.serve.api.controler.Endpoints.COMPANY;
+import static com.serve.api.controler.Endpoints.ID;
+
 @RestController
 @AllArgsConstructor
-@RequestMapping("/company")
+@RequestMapping(COMPANY)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CompanyController {
 
     CompanyService service;
 
-    @GetMapping("{id}")
+    @GetMapping(ID)
     public CompanyDto get(@PathVariable Long id) {
         return service.get(id);
     }
