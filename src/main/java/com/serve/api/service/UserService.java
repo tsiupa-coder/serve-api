@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.serve.api.mapper.UserMapper.toDto;
-import static com.serve.api.mapper.UserMapper.toModel;
 
 @Service
 @AllArgsConstructor
@@ -22,25 +20,25 @@ import static com.serve.api.mapper.UserMapper.toModel;
 public class UserService {
 
     UserRepository repository;
-
+    UserMapper mapper;
     public UserDto get(Long id) {
 
         if(Objects.isNull(id)) throw new NullPointerException("Id is null");
 
-        return toDto(repository.findById(id).orElseThrow());
+        return mapper.toDto(repository.findById(id).orElseThrow());
     }
 
     public void create(UserDto dto) {
 
         if(Objects.isNull(dto)) throw new NullPointerException("User is null");
-        User user = toModel(dto);
+        User user = mapper.toModel(dto);
 
         repository.save(user);
     }
 
     public List<UserDto> getAll(){
 
-        List<UserDto> dtos = repository.findAll().stream().map(UserMapper::toDto).collect(Collectors.toList());
+        List<UserDto> dtos = repository.findAll().stream().map(user -> mapper.toDto(user)).collect(Collectors.toList());
 
         return dtos;
     }

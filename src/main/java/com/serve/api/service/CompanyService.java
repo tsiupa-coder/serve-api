@@ -1,6 +1,7 @@
 package com.serve.api.service;
 
 import com.serve.api.dto.CompanyDto;
+import com.serve.api.mapper.CompanyMapper;
 import com.serve.api.model.Company;
 import com.serve.api.model.User;
 import com.serve.api.repository.CompanyRepository;
@@ -10,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,18 +20,24 @@ import java.util.stream.Collectors;
 public class CompanyService {
 
     CompanyRepository repository;
+    CompanyMapper mapper;
 
-    public CompanyDto get(String id) {
+    public CompanyDto get(Long id) {
 
-        return null;
+        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+        return mapper.toDto(repository.findById(id).orElseThrow());
     }
 
     public List<CompanyDto> get(){
-        return null;
+
+        List<CompanyDto> dtos = repository.findAll().stream().map(company -> mapper.toDto(company)).collect(Collectors.toList());
+
+        return dtos;
     }
 
-    public boolean create(CompanyDto company) {
+    public void create(CompanyDto dto) {
 
-        return false;
+        Company company = mapper.toModel(dto);
+        repository.save(company);
     }
 }
