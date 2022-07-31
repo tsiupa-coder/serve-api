@@ -40,4 +40,22 @@ public class CompanyService {
         Company company = mapper.toModel(dto);
         repository.save(company);
     }
+
+    public void remove(Long id) {
+
+        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+
+        repository.deleteById(id);
+    }
+
+    public void update(Long id, String description){
+
+        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if(Objects.isNull(description) || description.isBlank()) throw new NullPointerException("Description is null");
+
+        Company company = repository.findById(id).orElseThrow();
+        company.setDescription(description);
+
+        repository.save(company);
+    }
 }

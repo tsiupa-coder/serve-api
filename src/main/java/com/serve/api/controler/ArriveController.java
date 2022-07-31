@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,5 +42,11 @@ public class ArriveController{
     @ResponseStatus(code = HttpStatus.CREATED)
     public void create(@RequestBody ArriveDto arrive) {
         service.create(arrive);
+    }
+
+    @DeleteMapping(ID)
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void remove(@PathVariable Long id){
+        service.remove(id);
     }
 }

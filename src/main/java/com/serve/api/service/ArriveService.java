@@ -7,6 +7,7 @@ import com.serve.api.model.Arrive;
 import com.serve.api.repository.ArriveRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +45,11 @@ public class ArriveService {
                 .stream()
                 .map(arrive -> mapper.toDto(arrive))
                 .collect(Collectors.toList());
+    }
+
+    public void remove(Long id){
+
+       if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+       repository.deleteById(id);
     }
 }

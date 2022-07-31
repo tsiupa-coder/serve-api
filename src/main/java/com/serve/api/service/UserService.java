@@ -4,6 +4,7 @@ import com.serve.api.dto.UserDto;
 import com.serve.api.mapper.UserMapper;
 import com.serve.api.model.User;
 import com.serve.api.repository.UserRepository;
+import liquibase.pro.packaged.O;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -41,5 +42,23 @@ public class UserService {
         List<UserDto> dtos = repository.findAll().stream().map(user -> mapper.toDto(user)).collect(Collectors.toList());
 
         return dtos;
+    }
+
+    public void update(Long id, String position){
+
+        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if(Objects.isNull(position) || position.isBlank()) throw new NullPointerException("position is null");
+
+        User user = repository.findById(id).orElseThrow();
+        user.setPosition(position);
+
+        repository.save(user);
+    }
+
+    public void remove(Long id) {
+
+        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+
+        repository.deleteById(id);
     }
 }

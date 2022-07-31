@@ -10,7 +10,4 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
-//    Optional<User> get(String id);
-//    boolean create(User user);
 }
