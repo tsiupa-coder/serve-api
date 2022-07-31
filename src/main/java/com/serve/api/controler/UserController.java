@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.serve.api.controler.Endpoints.ID;
-import static com.serve.api.controler.Endpoints.USER;
+import static com.serve.api.controler.endpoints.Endpoints.ID;
+import static com.serve.api.controler.endpoints.Endpoints.USER;
 
 @RestController
 @AllArgsConstructor

@@ -1,4 +1,4 @@
-package com.serve.api.controler;
+package com.serve.api.controler.endpoints;
 
 public class Endpoints {
 

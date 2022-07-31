@@ -1,9 +1,7 @@
 package com.serve.api.controler;
 
 import com.serve.api.dto.CompanyDto;
-import com.serve.api.model.Company;
 import com.serve.api.service.CompanyService;
-import liquibase.pro.packaged.L;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -18,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.serve.api.controler.Endpoints.COMPANY;
-import static com.serve.api.controler.Endpoints.ID;
+import static com.serve.api.controler.endpoints.Endpoints.COMPANY;
+import static com.serve.api.controler.endpoints.Endpoints.ID;
 
 @RestController
 @AllArgsConstructor
