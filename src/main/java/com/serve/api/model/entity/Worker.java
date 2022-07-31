@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity(name = "users")
-public class User extends BaseEntity {
+@Entity(name = "worker")
+public class Worker extends BaseEntity {
 
     @Column(name = "firstname")
     String first_name;

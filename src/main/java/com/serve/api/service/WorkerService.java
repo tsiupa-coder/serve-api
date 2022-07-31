@@ -1,9 +1,9 @@
 package com.serve.api.service;
 
-import com.serve.api.dto.UserDto;
-import com.serve.api.mapper.UserMapper;
-import com.serve.api.model.entity.User;
-import com.serve.api.repository.UserRepository;
+import com.serve.api.dto.WorkerDto;
+import com.serve.api.mapper.WorkerMapper;
+import com.serve.api.model.entity.Worker;
+import com.serve.api.repository.WorkerRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,29 +17,29 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class UserService {
+public class WorkerService {
 
-    UserRepository repository;
-    UserMapper mapper;
+    WorkerRepository repository;
+    WorkerMapper mapper;
 
-    public UserDto get(Long id) {
+    public WorkerDto get(Long id) {
 
         if (Objects.isNull(id)) throw new NullPointerException("Id is null");
 
         return mapper.toDto(repository.findById(id).orElseThrow());
     }
 
-    public void create(UserDto dto) {
+    public void create(WorkerDto dto) {
 
         if (Objects.isNull(dto)) throw new NullPointerException("User is null");
-        User user = mapper.toModel(dto);
+        Worker user = mapper.toModel(dto);
 
         repository.save(user);
     }
 
-    public List<UserDto> getAll() {
+    public List<WorkerDto> getAll() {
 
-        List<UserDto> dtos = repository.findAll().stream().map(user -> mapper.toDto(user)).collect(Collectors.toList());
+        List<WorkerDto> dtos = repository.findAll().stream().map(user -> mapper.toDto(user)).collect(Collectors.toList());
 
         return dtos;
     }
@@ -49,10 +49,10 @@ public class UserService {
         if (Objects.isNull(id)) throw new NullPointerException("Id is null");
         if (Objects.isNull(position) || position.isBlank()) throw new NullPointerException("position is null");
 
-        User user = repository.findById(id).orElseThrow();
-        user.setPosition(position);
+        Worker worker = repository.findById(id).orElseThrow();
+        worker.setPosition(position);
 
-        repository.save(user);
+        repository.save(worker);
     }
 
     public void remove(Long id) {

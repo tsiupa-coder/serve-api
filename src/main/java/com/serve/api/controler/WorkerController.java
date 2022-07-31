@@ -1,7 +1,7 @@
 package com.serve.api.controler;
 
-import com.serve.api.dto.UserDto;
-import com.serve.api.service.UserService;
+import com.serve.api.dto.WorkerDto;
+import com.serve.api.service.WorkerService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,29 +20,29 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static com.serve.api.controler.endpoints.Endpoints.ID;
-import static com.serve.api.controler.endpoints.Endpoints.USER;
+import static com.serve.api.controler.endpoints.Endpoints.WORKERS;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(USER)
+@RequestMapping(WORKERS)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class UserController {
+public class WorkerController {
 
-    UserService service;
+    WorkerService service;
 
     @GetMapping(ID)
-    public UserDto getUser(@PathVariable Long id) {
+    public WorkerDto getWorker(@PathVariable Long id) {
         return service.get(id);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void create(@RequestBody UserDto user) {
-        service.create(user);
+    public void create(@RequestBody WorkerDto workerDto) {
+        service.create(workerDto);
     }
 
     @GetMapping
-    public List<UserDto> get() {
+    public List<WorkerDto> get() {
         return service.getAll();
     }
 
