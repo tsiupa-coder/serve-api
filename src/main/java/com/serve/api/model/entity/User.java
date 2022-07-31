@@ -1,6 +1,5 @@
 package com.serve.api.model.entity;
 
-import com.serve.api.dto.UserDto;
 import com.serve.api.model.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Data;
