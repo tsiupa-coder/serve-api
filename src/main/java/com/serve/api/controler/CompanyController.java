@@ -2,7 +2,6 @@ package com.serve.api.controler;
 
 import com.serve.api.dto.CompanyDto;
 import com.serve.api.service.CompanyService;
-import liquibase.pro.packaged.I;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -49,7 +48,7 @@ public class CompanyController {
 
     @PutMapping(ID)
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public void update(@PathVariable Long id, @RequestParam String description){
+    public void update(@PathVariable Long id, @RequestParam String description) {
         service.update(id, description);
     }
 

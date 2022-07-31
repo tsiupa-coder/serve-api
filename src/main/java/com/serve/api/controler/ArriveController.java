@@ -24,7 +24,7 @@ import static com.serve.api.controler.endpoints.Endpoints.ID;
 @AllArgsConstructor
 @RequestMapping(ARRIVE)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ArriveController{
+public class ArriveController {
 
     ArriveService service;
 
@@ -46,7 +46,7 @@ public class ArriveController{
 
     @DeleteMapping(ID)
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void remove(@PathVariable Long id){
+    public void remove(@PathVariable Long id) {
         service.remove(id);
     }
 }

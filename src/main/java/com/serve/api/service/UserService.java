@@ -4,7 +4,6 @@ import com.serve.api.dto.UserDto;
 import com.serve.api.mapper.UserMapper;
 import com.serve.api.model.User;
 import com.serve.api.repository.UserRepository;
-import liquibase.pro.packaged.O;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -22,32 +21,33 @@ public class UserService {
 
     UserRepository repository;
     UserMapper mapper;
+
     public UserDto get(Long id) {
 
-        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
 
         return mapper.toDto(repository.findById(id).orElseThrow());
     }
 
     public void create(UserDto dto) {
 
-        if(Objects.isNull(dto)) throw new NullPointerException("User is null");
+        if (Objects.isNull(dto)) throw new NullPointerException("User is null");
         User user = mapper.toModel(dto);
 
         repository.save(user);
     }
 
-    public List<UserDto> getAll(){
+    public List<UserDto> getAll() {
 
         List<UserDto> dtos = repository.findAll().stream().map(user -> mapper.toDto(user)).collect(Collectors.toList());
 
         return dtos;
     }
 
-    public void update(Long id, String position){
+    public void update(Long id, String position) {
 
-        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
-        if(Objects.isNull(position) || position.isBlank()) throw new NullPointerException("position is null");
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if (Objects.isNull(position) || position.isBlank()) throw new NullPointerException("position is null");
 
         User user = repository.findById(id).orElseThrow();
         user.setPosition(position);
@@ -57,7 +57,7 @@ public class UserService {
 
     public void remove(Long id) {
 
-        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
 
         repository.deleteById(id);
     }

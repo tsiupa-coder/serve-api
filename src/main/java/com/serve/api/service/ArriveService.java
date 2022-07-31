@@ -1,13 +1,11 @@
 package com.serve.api.service;
 
 import com.serve.api.dto.ArriveDto;
-import com.serve.api.dto.CompanyDto;
 import com.serve.api.mapper.ArriveMapper;
 import com.serve.api.model.Arrive;
 import com.serve.api.repository.ArriveRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
@@ -25,20 +23,20 @@ public class ArriveService {
 
     public ArriveDto get(Long id) {
 
-        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
 
         return mapper.toDto(repository.findById(id).orElseThrow());
     }
 
     public void create(ArriveDto dto) {
 
-        if(Objects.isNull(dto)) throw new NullPointerException("Arrive dto is null");
+        if (Objects.isNull(dto)) throw new NullPointerException("Arrive dto is null");
 
         Arrive arrive = mapper.toModel(dto);
         repository.save(arrive);
     }
 
-    public List<ArriveDto> get(){
+    public List<ArriveDto> get() {
 
         return repository
                 .findAll()
@@ -47,9 +45,9 @@ public class ArriveService {
                 .collect(Collectors.toList());
     }
 
-    public void remove(Long id){
+    public void remove(Long id) {
 
-       if(Objects.isNull(id)) throw new NullPointerException("Id is null");
-       repository.deleteById(id);
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
+        repository.deleteById(id);
     }
 }

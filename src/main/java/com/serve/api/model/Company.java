@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.Entity;
 
 @Data
-@FieldDefaults(level= AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity(name = "company")
 public class Company extends BaseEntity {
 
@@ -17,7 +17,7 @@ public class Company extends BaseEntity {
     String description;
     String token;
 
-    public static Company getCompany(CompanyDto company){
+    public static Company getCompany(CompanyDto company) {
 
         Company company1 = new Company();
         company1.setName(company.getName());
@@ -26,7 +26,7 @@ public class Company extends BaseEntity {
         return company1;
     }
 
-    public CompanyDto toDto(){
+    public CompanyDto toDto() {
 
         CompanyDto dto = new CompanyDto(this.name, this.getDescription());
 

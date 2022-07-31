@@ -9,15 +9,15 @@ import java.util.Objects;
 @Service
 public class CompanyMapper {
 
-    public CompanyDto toDto(Company company){
+    public CompanyDto toDto(Company company) {
 
-        if(Objects.isNull(company)) throw new NullPointerException("Company is null");
+        if (Objects.isNull(company)) throw new NullPointerException("Company is null");
         return new CompanyDto(company.getName(), company.getDescription());
     }
 
-    public Company toModel(CompanyDto dto){
+    public Company toModel(CompanyDto dto) {
 
-        if(Objects.isNull(dto)) throw new NullPointerException("Dto is null");
+        if (Objects.isNull(dto)) throw new NullPointerException("Dto is null");
 
         Company company = new Company();
 

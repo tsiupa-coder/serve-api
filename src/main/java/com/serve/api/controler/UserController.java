@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDto> get(){
+    public List<UserDto> get() {
         return service.getAll();
     }
 

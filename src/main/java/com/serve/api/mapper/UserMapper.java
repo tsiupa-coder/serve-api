@@ -9,15 +9,15 @@ import java.util.Objects;
 @Service
 public class UserMapper {
 
-    public UserDto toDto(User user){
+    public UserDto toDto(User user) {
 
-        if(Objects.isNull(user)) throw new NullPointerException("User is null");
+        if (Objects.isNull(user)) throw new NullPointerException("User is null");
         return new UserDto(user.getFirst_name(), user.getSecond_name(), user.getPosition());
     }
 
-    public User toModel(UserDto dto){
+    public User toModel(UserDto dto) {
 
-        if(Objects.isNull(dto)) throw new NullPointerException("Dto is null");
+        if (Objects.isNull(dto)) throw new NullPointerException("Dto is null");
 
         User user = new User();
         user.setFirst_name(dto.getFirst_name());
