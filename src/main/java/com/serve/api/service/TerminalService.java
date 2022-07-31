@@ -16,12 +16,12 @@ public class TerminalService {
     TerminalRepository repository;
     TerminalMapper mapper;
 
-    public TerminalDto get(Long id){
-        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+    public TerminalDto get(Long id) {
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
         return mapper.toDto(repository.getById(id));
     }
 
-    public List<TerminalDto> get(){
+    public List<TerminalDto> get() {
         return repository
                 .findAll()
                 .stream()
@@ -37,17 +37,17 @@ public class TerminalService {
         repository.save(terminal);
     }
 
-    public void remove(Long id){
+    public void remove(Long id) {
 
-        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
 
         repository.deleteById(id);
     }
 
-    public void update(Long id, TerminalDto dto){
+    public void update(Long id, TerminalDto dto) {
 
-        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
-        if(Objects.isNull(dto)) throw new NullPointerException("Dto is null");
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if (Objects.isNull(dto)) throw new NullPointerException("Dto is null");
 
         Terminal terminal = repository.findById(id).orElseThrow();
 

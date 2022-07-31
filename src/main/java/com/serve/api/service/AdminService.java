@@ -18,7 +18,7 @@ public class AdminService {
     AdminPswMapper pswMapper;
 
     public AdminDto get(Long id) {
-        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
         return mapper.toDto(repository.findById(id).orElseThrow());
     }
 
@@ -26,14 +26,14 @@ public class AdminService {
         return repository.findAll().stream().map(admin -> mapper.toDto(admin)).collect(Collectors.toList());
     }
 
-    public void create(AdminPswDto dto){
-        if(Objects.isNull(dto)) throw new NullPointerException("Dto is null");
+    public void create(AdminPswDto dto) {
+        if (Objects.isNull(dto)) throw new NullPointerException("Dto is null");
         Admin admin = pswMapper.toModel(dto);
         repository.save(admin);
     }
 
-    public void remove(Long id){
-        if(Objects.isNull(id)) throw new NullPointerException("Id is null");
+    public void remove(Long id) {
+        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
         repository.deleteById(id);
     }
 }
