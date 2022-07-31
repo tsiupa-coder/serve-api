@@ -2,7 +2,7 @@ package com.serve.api.service;
 
 import com.serve.api.dto.ArriveDto;
 import com.serve.api.mapper.ArriveMapper;
-import com.serve.api.model.Arrive;
+import com.serve.api.model.entity.Arrive;
 import com.serve.api.repository.ArriveRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -2,7 +2,7 @@ package com.serve.api.service;
 
 import com.serve.api.dto.CompanyDto;
 import com.serve.api.mapper.CompanyMapper;
-import com.serve.api.model.Company;
+import com.serve.api.model.entity.Company;
 import com.serve.api.repository.CompanyRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -2,7 +2,7 @@ package com.serve.api.service;
 
 import com.serve.api.dto.UserDto;
 import com.serve.api.mapper.UserMapper;
-import com.serve.api.model.User;
+import com.serve.api.model.entity.User;
 import com.serve.api.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

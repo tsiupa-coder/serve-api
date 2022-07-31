@@ -1,7 +1,7 @@
 package com.serve.api.mapper;
 
 import com.serve.api.dto.ArriveDto;
-import com.serve.api.model.Arrive;
+import com.serve.api.model.entity.Arrive;
 import org.springframework.stereotype.Service;
 
 @Service

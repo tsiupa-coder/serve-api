@@ -1,5 +1,6 @@
-package com.serve.api.model;
+package com.serve.api.model.entity;
 
+import com.serve.api.dto.CompanyDto;
 import com.serve.api.model.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -9,9 +10,10 @@ import javax.persistence.Entity;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity(name = "arrive")
-public class Arrive extends BaseEntity {
-    String companyId;
-    String userId;
-    Type type;
+@Entity(name = "company")
+public class Company extends BaseEntity {
+
+    String name;
+    String description;
+    String token;
 }

@@ -1,4 +1,4 @@
-package com.serve.api.model;
+package com.serve.api.model.entity;
 
 import com.serve.api.dto.UserDto;
 import com.serve.api.model.base.BaseEntity;
@@ -20,20 +20,4 @@ public class User extends BaseEntity {
     String second_name;
     @Column(name = "position")
     String position;
-
-    public static User getUser(UserDto userDto) {
-
-        User user = new User();
-        user.setFirst_name(userDto.getFirst_name());
-        user.setSecond_name(user.getSecond_name());
-        user.setPosition(user.getPosition());
-
-        return user;
-    }
-
-    public UserDto getDto() {
-
-        UserDto userDto = new UserDto(this.getFirst_name(), this.getSecond_name(), this.getPosition());
-        return userDto;
-    }
 }

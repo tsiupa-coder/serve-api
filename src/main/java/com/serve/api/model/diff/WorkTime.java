@@ -1,4 +1,4 @@
-package com.serve.api.model;
+package com.serve.api.model.diff;
 
 
 import lombok.AccessLevel;

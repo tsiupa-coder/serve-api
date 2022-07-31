@@ -1,7 +1,7 @@
 package com.serve.api.mapper;
 
 import com.serve.api.dto.CompanyDto;
-import com.serve.api.model.Company;
+import com.serve.api.model.entity.Company;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

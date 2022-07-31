@@ -1,7 +1,7 @@
 package com.serve.api.mapper;
 
 import com.serve.api.dto.UserDto;
-import com.serve.api.model.User;
+import com.serve.api.model.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
