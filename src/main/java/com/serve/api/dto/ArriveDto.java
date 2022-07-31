@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class ArriveDto {
-    String company_id;
-    String user_token;
+    String companyId;
+    String userId;
     Type type;
 }

@@ -32,12 +32,12 @@ public class CompanyController {
     }
 
     @GetMapping
-    @ResponseStatus(code = HttpStatus.CREATED)
     public List<CompanyDto> get() {
         return service.get();
     }
 
     @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
     public void create(@RequestBody CompanyDto company) {
         service.create(company);
     }
