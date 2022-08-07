@@ -10,8 +10,11 @@ import com.serve.api.repository.WorkerRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.Period;
 import java.util.Date;
 import java.util.List;
@@ -28,10 +31,16 @@ public class ArriveService {
     WorkerRepository workerRepository;
     ArriveMapper mapper;
 
+    Logger logger = LoggerFactory.getLogger(ArriveService.class);
+
     public ArriveDto get(Long id) {
 
-        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
+        logger.info("Get Arrive by id" + id);
 
+        if (Objects.isNull(id)) {
+            logger.warn("Id is null");
+            throw new NullPointerException("Id is null");
+        }
         return mapper.toDto(repository.findById(id).orElseThrow());
     }
 
@@ -40,7 +49,6 @@ public class ArriveService {
         if (Objects.isNull(dto)) throw new NullPointerException("Arrive dto is null");
 
         Arrive arrive = mapper.toModel(dto, companyRepository, workerRepository);
-
 
         if(arrive.getType() == Type.Exit) {
 
@@ -109,7 +117,7 @@ public class ArriveService {
         return 0;
     }
 
-    public int getHours(Long workerId, Period period){
+    public long getSeconds(Long workerId, Period period){
 
         //якщо кількість входів != кількості виходів  == помилка
         // вихід - вхід = робоічі години
@@ -117,8 +125,28 @@ public class ArriveService {
         // return загальні - кількість входів * робочий день(години)
 
 
+        // TODO: 07.08.22 первести фільтрацію на базу даних (так знімітся навантаження з апки)
+        // TODO: 07.08.22 зробити фільтафію за періодом
 
-        return 0;
+        long totalTimeInSeconds = 0;
+
+        List<Arrive> exit = repository
+                .findAll()
+                .stream()
+                .filter(arrive -> Objects.equals(arrive.getType(), Type.Exit))
+                .filter(arrive -> Objects.nonNull(arrive.getEnter_id()))
+                .collect(Collectors.toList());
+
+        for (Arrive arrive : exit){
+            Arrive enter = repository
+                    .findById(arrive.getEnter_id())
+                    .orElseThrow();
+            Duration duration = Duration
+                    .between(enter.getCreateDateTime(), arrive.getCreateDateTime());
+            totalTimeInSeconds += duration.getSeconds();
+        }
+
+        return totalTimeInSeconds;
     }
 
 
