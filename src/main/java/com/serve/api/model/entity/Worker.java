@@ -7,6 +7,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -21,4 +23,8 @@ public class Worker extends BaseEntity {
     String position;
     @Column(name = "isActive")
     boolean isActive;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id", nullable = false)
+    Company company;
 }

@@ -5,10 +5,10 @@ import com.serve.api.mapper.ArriveMapper;
 import com.serve.api.model.entity.Arrive;
 import com.serve.api.model.enumeration.Type;
 import com.serve.api.repository.ArriveRepository;
-import liquibase.exception.DatabaseException;
+import com.serve.api.repository.CompanyRepository;
+import com.serve.api.repository.WorkerRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 public class ArriveService {
 
     ArriveRepository repository;
+    CompanyRepository companyRepository;
+    WorkerRepository workerRepository;
     ArriveMapper mapper;
 
     public ArriveDto get(Long id) {
@@ -37,7 +39,24 @@ public class ArriveService {
 
         if (Objects.isNull(dto)) throw new NullPointerException("Arrive dto is null");
 
-        Arrive arrive = mapper.toModel(dto);
+        Arrive arrive = mapper.toModel(dto, companyRepository, workerRepository);
+
+
+        if(arrive.getType() == Type.Exit) {
+
+            Arrive fake = new Arrive();
+            fake.setId(null);
+
+            Arrive lastEnter = repository
+                    .findAll()
+                    .stream()
+                    .filter(entity -> Objects.equals(entity.getType(), Type.Enter))
+                    .reduce((first, second) -> second)
+                    .orElse(fake);
+
+            arrive.setId(lastEnter.getId());
+        }
+
         repository.save(arrive);
     }
 

@@ -1,5 +1,6 @@
 package com.serve.api.model.base;
 
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,6 +11,7 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
+@Data
 public class BaseEntity {
 
     @Id
@@ -17,8 +19,8 @@ public class BaseEntity {
     public Long id;
 
     @CreationTimestamp
-    private LocalDateTime createDateTime;
+    protected LocalDateTime createDateTime;
 
     @UpdateTimestamp
-    private LocalDateTime updateDateTime;
+    protected LocalDateTime updateDateTime;
 }
