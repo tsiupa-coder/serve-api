@@ -2,7 +2,9 @@ package com.serve.api.mapper;
 
 import com.serve.api.dto.AdminPswDto;
 import com.serve.api.model.entity.Admin;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminPswMapper {
 
     public AdminPswDto toDto(Admin admin) {

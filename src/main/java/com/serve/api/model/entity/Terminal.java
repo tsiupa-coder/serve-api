@@ -20,6 +20,6 @@ public class Terminal extends BaseEntity {
     String description;
 
     @ManyToOne
-    @JoinColumn(name = "company_id", nullable = false)
+    @JoinColumn(name = "company_id", nullable = true)
     Company company;
 }

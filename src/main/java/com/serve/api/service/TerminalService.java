@@ -4,6 +4,7 @@ import com.serve.api.dto.TerminalDto;
 import com.serve.api.mapper.TerminalMapper;
 import com.serve.api.model.entity.Terminal;
 import com.serve.api.repository.TerminalRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class TerminalService {
 
     TerminalRepository repository;

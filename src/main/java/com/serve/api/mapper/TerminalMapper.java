@@ -2,9 +2,11 @@ package com.serve.api.mapper;
 
 import com.serve.api.dto.TerminalDto;
 import com.serve.api.model.entity.Terminal;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
+@Service
 public class TerminalMapper {
 
     public TerminalDto toDto(Terminal terminal) {

@@ -25,6 +25,6 @@ public class Worker extends BaseEntity {
     boolean isActive;
 
     @ManyToOne
-    @JoinColumn(name = "company_id", nullable = false)
+    @JoinColumn(name = "company_id", nullable = true)
     Company company;
 }
