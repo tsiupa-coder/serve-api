@@ -1,10 +1,10 @@
 package com.serve.api.model.entity;
 
 import com.serve.api.model.base.BaseEntity;
+import com.serve.api.model.enumeration.Position;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.aspectj.weaver.Position;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

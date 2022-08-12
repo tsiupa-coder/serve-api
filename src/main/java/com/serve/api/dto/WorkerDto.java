@@ -1,5 +1,6 @@
 package com.serve.api.dto;
 
+import com.serve.api.model.enumeration.Position;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,5 +14,5 @@ public class WorkerDto {
 
     String first_name;
     String second_name;
-    String position;
+    Position position;
 }
