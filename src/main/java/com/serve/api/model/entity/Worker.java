@@ -4,12 +4,15 @@ import com.serve.api.model.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import org.aspectj.weaver.Position;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+
+// TODO: 12.08.22 dataBase drop table ADMIN , and WORKER
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity(name = "worker")
@@ -17,14 +20,19 @@ public class Worker extends BaseEntity {
 
     @Column(name = "firstname")
     String first_name;
+
     @Column(name = "secondname")
     String second_name;
+
     @Column(name = "position")
-    String position;
+    Position position;
+
     @Column(name = "isActive")
     boolean isActive;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id", nullable = true)
-    Company company;
+    @Column(name = "password")
+    String password;
+
+    @Column(name = "email")
+    String email;
 }
