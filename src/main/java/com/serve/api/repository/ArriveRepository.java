@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArriveRepository extends JpaRepository<Arrive, Long> {
 
+    //https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result
+    Arrive findTopById(Long id);
+
 }

@@ -14,8 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import java.time.Duration;
 import java.time.Period;
 import java.util.Date;
 import java.util.List;
@@ -104,6 +102,9 @@ public class ArriveService {
         return 0;
     }
 
+    public Arrive getLatOne(Long id){
+        return repository.findTopById(id);
+    }
 
     /***
      * повертаються години
