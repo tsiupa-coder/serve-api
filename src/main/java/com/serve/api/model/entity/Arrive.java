@@ -18,16 +18,16 @@ public class Arrive extends BaseEntity {
 
     Type type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "companyId")
     Company company;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "worker_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "workerId")
     Worker worker;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "enter_id", nullable = true)
-    Arrive enter_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "enterId", nullable = true)
+    Arrive enterId;
 
 }

@@ -61,7 +61,7 @@ public class ArriveService {
                     .reduce((first, second) -> second)
                     .orElse(fake);
 
-            arrive.setId(lastEnter.getId());
+            arrive.setEnterId(lastEnter);
         }
 
         repository.save(arrive);
@@ -103,7 +103,7 @@ public class ArriveService {
     }
 
     public Arrive getLatOne(Long id){
-        return repository.findTopById(id);
+        return repository.findTopByWorkerIdAndTypeOrderByCreateDateTimeDesc(id, Type.Enter).get();
     }
 
     /***
@@ -136,7 +136,7 @@ public class ArriveService {
                 .findAll()
                 .stream()
                 .filter(arrive -> Objects.equals(arrive.getType(), Type.Exit))
-                .filter(arrive -> Objects.nonNull(arrive.getEnter_id()))
+                .filter(arrive -> Objects.nonNull(arrive.getEnterId()))
                 .collect(Collectors.toList());
 
 //        for (Arrive arrive : exit){
