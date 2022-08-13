@@ -3,6 +3,7 @@ package com.serve.api.service;
 import com.serve.api.dto.ArriveDto;
 import com.serve.api.mapper.ArriveMapper;
 import com.serve.api.model.entity.Arrive;
+import com.serve.api.model.entity.Worker;
 import com.serve.api.model.enumeration.Type;
 import com.serve.api.repository.ArriveRepository;
 import com.serve.api.repository.CompanyRepository;
@@ -12,8 +13,11 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.Period;
 import java.util.Date;
 import java.util.List;
@@ -51,17 +55,17 @@ public class ArriveService {
 
         if(arrive.getType() == Type.Exit) {
 
-            Arrive fake = new Arrive();
-            fake.setId(null);
-
-            Arrive lastEnter = repository
-                    .findAll()
-                    .stream()
-                    .filter(entity -> Objects.equals(entity.getType(), Type.Enter))
-                    .reduce((first, second) -> second)
-                    .orElse(fake);
-
-            arrive.setEnterId(lastEnter);
+//            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            String username;
+//            if (principal instanceof UserDetails) {
+//                username = ((UserDetails)principal).getUsername();
+//            } else {
+//                username = principal.toString();
+//            }
+//
+//            Worker current = workerRepository.getByEmail(username);
+//
+//            arrive.setEnterId(getLatOne(current.id));
         }
 
         repository.save(arrive);
@@ -103,7 +107,7 @@ public class ArriveService {
     }
 
     public Arrive getLatOne(Long id){
-        return repository.findTopByWorkerIdAndTypeOrderByCreateDateTimeDesc(id, Type.Enter).get();
+        return repository.findTopByWorkerIdOrderByCreateDateTimeDesc(id).get();
     }
 
     /***

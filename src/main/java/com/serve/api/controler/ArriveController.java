@@ -1,7 +1,6 @@
 package com.serve.api.controler;
 
 import com.serve.api.dto.ArriveDto;
-import com.serve.api.model.entity.Arrive;
 import com.serve.api.service.ArriveService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -51,13 +50,5 @@ public class ArriveController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void remove(@PathVariable Long id) {
         service.remove(id);
-    }
-
-
-    @GetMapping("Test/" + ID)
-    public Arrive tstt(@PathVariable Long id) {
-        Arrive worker = service.getLatOne(id);
-
-        return worker;
     }
 }

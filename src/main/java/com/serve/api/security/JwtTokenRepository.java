@@ -26,7 +26,7 @@ public class JwtTokenRepository implements CsrfTokenRepository {
     private String secret;
 
     public JwtTokenRepository() {
-        this.secret = "springrest";
+        this.secret = "pdpfidsjfoiesdfskdjbfsueubakjskjbcksaclkv";
     }
 
     @Override

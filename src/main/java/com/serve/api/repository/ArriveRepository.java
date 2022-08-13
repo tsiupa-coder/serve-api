@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface ArriveRepository extends JpaRepository<Arrive, Long> {
 
     //https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result
-    Optional<Arrive> findTopByWorkerIdAndTypeOrderByCreateDateTimeDesc(Long id, Type type);
+    Optional<Arrive> findTopByWorkerIdOrderByCreateDateTimeDesc(Long id);
 
 }
