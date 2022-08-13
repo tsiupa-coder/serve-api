@@ -22,6 +22,8 @@ import java.util.List;
 import static com.serve.api.controler.endpoints.Endpoints.COMPANY;
 import static com.serve.api.controler.endpoints.Endpoints.ID;
 
+// TODO: 13.08.22 змінити оновленння дескріпшін через боді
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(COMPANY)

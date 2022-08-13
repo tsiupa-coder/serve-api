@@ -1,6 +1,7 @@
 package com.serve.api.controler;
 
 import com.serve.api.dto.WorkerDto;
+import com.serve.api.model.enumeration.Position;
 import com.serve.api.service.WorkerService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,8 @@ import static com.serve.api.controler.endpoints.Endpoints.WORKERS;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class WorkerController {
 
+
+    // TODO: 13.08.22 захендлити notFoundExeption to 404 
     WorkerService service;
 
     @GetMapping(ID)
@@ -48,7 +51,7 @@ public class WorkerController {
 
     @PutMapping(ID)
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public void update(@PathVariable Long id, @RequestParam String position) {
+    public void update(@PathVariable Long id, @RequestParam Position position) {
         service.update(id, position);
     }
 

@@ -6,9 +6,8 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -19,15 +18,16 @@ public class Arrive extends BaseEntity {
 
     Type type;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
     Company company;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "worker_id")
     Worker worker;
 
-    @Column(columnDefinition = "Link to Arrive | only for Type.exit")
-    long enter_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "enter_id", nullable = true)
+    Arrive enter_id;
 
 }

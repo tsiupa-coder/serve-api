@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.Duration;
 import java.time.Period;
 import java.util.Date;
@@ -39,14 +40,14 @@ public class ArriveService {
 
         if (Objects.isNull(id)) {
             logger.warn("Id is null");
-            throw new NullPointerException("Id is null");
+            throw new IllegalArgumentException("Id is null");
         }
-        return mapper.toDto(repository.findById(id).orElseThrow());
+        return mapper.toDto(repository.getById(id));
     }
 
     public void create(ArriveDto dto) {
 
-        if (Objects.isNull(dto)) throw new NullPointerException("Arrive dto is null");
+        if (Objects.isNull(dto)) throw new IllegalArgumentException("Arrive dto is null");
 
         Arrive arrive = mapper.toModel(dto, companyRepository, workerRepository);
 
@@ -79,7 +80,7 @@ public class ArriveService {
 
     public void remove(Long id) {
 
-        if (Objects.isNull(id)) throw new NullPointerException("Id is null");
+        if (Objects.isNull(id)) throw new IllegalArgumentException("Id is null");
         repository.deleteById(id);
     }
 
@@ -137,14 +138,14 @@ public class ArriveService {
                 .filter(arrive -> Objects.nonNull(arrive.getEnter_id()))
                 .collect(Collectors.toList());
 
-        for (Arrive arrive : exit){
-            Arrive enter = repository
-                    .findById(arrive.getEnter_id())
-                    .orElseThrow();
-            Duration duration = Duration
-                    .between(enter.getCreateDateTime(), arrive.getCreateDateTime());
-            totalTimeInSeconds += duration.getSeconds();
-        }
+//        for (Arrive arrive : exit){
+//            Arrive enter = repository
+//                    .findById(arrive.getEnter_id())
+//                    .orElseThrow();
+//            Duration duration = Duration
+//                    .between(enter.getCreateDateTime(), arrive.getCreateDateTime());
+//            totalTimeInSeconds += duration.getSeconds();
+//        }
 
         return totalTimeInSeconds;
     }

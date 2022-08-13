@@ -20,6 +20,8 @@ import java.util.List;
 import static com.serve.api.controler.endpoints.Endpoints.ARRIVE;
 import static com.serve.api.controler.endpoints.Endpoints.ID;
 
+// TODO: 13.08.22 додати енпоінт, для конкретного працівника повертати всі аррайви
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(ARRIVE)

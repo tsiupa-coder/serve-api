@@ -8,8 +8,6 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 
 // TODO: 12.08.22 dataBase drop table ADMIN , and WORKER
