@@ -1,0 +1,106 @@
+BEGIN;
+
+CREATE TABLE IF NOT EXISTS public.arrive
+(
+    id bigint NOT NULL DEFAULT nextval('arrive_id_seq'::regclass),
+    create_date_time timestamp without time zone,
+    update_date_time timestamp without time zone,
+    type integer,
+    company_id bigint,
+    enter_id bigint,
+    worker_id bigint,
+    CONSTRAINT arrive_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.company
+(
+    id bigint NOT NULL DEFAULT nextval('company_id_seq'::regclass),
+    create_date_time timestamp without time zone,
+    update_date_time timestamp without time zone,
+    description character varying(255) COLLATE pg_catalog."default",
+    name character varying(255) COLLATE pg_catalog."default",
+    token character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT company_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.databasechangelog
+(
+    id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    author character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    filename character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    dateexecuted timestamp without time zone NOT NULL,
+    orderexecuted integer NOT NULL,
+    exectype character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    md5sum character varying(35) COLLATE pg_catalog."default",
+    description character varying(255) COLLATE pg_catalog."default",
+    comments character varying(255) COLLATE pg_catalog."default",
+    tag character varying(255) COLLATE pg_catalog."default",
+    liquibase character varying(20) COLLATE pg_catalog."default",
+    contexts character varying(255) COLLATE pg_catalog."default",
+    labels character varying(255) COLLATE pg_catalog."default",
+    deployment_id character varying(10) COLLATE pg_catalog."default"
+);
+
+CREATE TABLE IF NOT EXISTS public.databasechangeloglock
+(
+    id integer NOT NULL,
+    locked boolean NOT NULL,
+    lockgranted timestamp without time zone,
+    lockedby character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT databasechangeloglock_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.terminal
+(
+    id bigint NOT NULL DEFAULT nextval('terminal_id_seq'::regclass),
+    create_date_time timestamp without time zone,
+    update_date_time timestamp without time zone,
+    description character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    location character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    company_id bigint,
+    CONSTRAINT terminal_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.worker
+(
+    id bigint NOT NULL DEFAULT nextval('worker_id_seq'::regclass),
+    create_date_time timestamp without time zone,
+    update_date_time timestamp without time zone,
+    email character varying(255) COLLATE pg_catalog."default",
+    firstname character varying(255) COLLATE pg_catalog."default",
+    is_active boolean,
+    password character varying(255) COLLATE pg_catalog."default",
+    "position" integer,
+    secondname character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT worker_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE IF EXISTS public.arrive
+    ADD CONSTRAINT fkc13l3hrvgqb2rsldct754bp4a FOREIGN KEY (company_id)
+    REFERENCES public.company (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+
+
+ALTER TABLE IF EXISTS public.arrive
+    ADD CONSTRAINT fkeah4vntt24nmnki5reomlhuew FOREIGN KEY (worker_id)
+    REFERENCES public.worker (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+
+
+ALTER TABLE IF EXISTS public.arrive
+    ADD CONSTRAINT fkn90v73sgoc8o681hnixh8ycfa FOREIGN KEY (enter_id)
+    REFERENCES public.arrive (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+
+
+ALTER TABLE IF EXISTS public.terminal
+    ADD CONSTRAINT fkdpqtaej8x5fif6mbbh5mas8t4 FOREIGN KEY (company_id)
+    REFERENCES public.company (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+
+END;
