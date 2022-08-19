@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +20,6 @@ import java.util.List;
 
 import static com.serve.api.controler.endpoints.Endpoints.COMPANY;
 import static com.serve.api.controler.endpoints.Endpoints.ID;
-
-// TODO: 13.08.22 змінити оновленння дескріпшін через боді
 
 @RestController
 @AllArgsConstructor
@@ -50,7 +47,7 @@ public class CompanyController {
 
     @PutMapping(ID)
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public void update(@PathVariable Long id, @RequestParam String description) {
+    public void update(@PathVariable Long id, @RequestBody String description) {
         service.update(id, description);
     }
 
