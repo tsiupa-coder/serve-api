@@ -10,6 +10,8 @@
 
     cd api
 
+    sudo systemctl start elasticsearch
+
     sdk use java 18.0.2-open
     
     mvn install
@@ -38,6 +40,8 @@
     maven 3.8.6
 
     SDKMAN 5.16.0
+
+    elasticsearch
 
 
 ### prepare postgresql
